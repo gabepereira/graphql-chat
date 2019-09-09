@@ -1,6 +1,6 @@
 {
   "name": "graphql-chat",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Basic node chat app server.",
   "main": "./src/server.js",
   "scripts": {
