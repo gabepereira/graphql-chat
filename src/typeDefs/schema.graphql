@@ -1,0 +1,22 @@
+type Query {
+  user(id: ID!): User!
+  users: [User!]!
+}
+
+type Mutation {
+  auth(email: String!, password: String!): Token!
+  createUser(name: String!, email: String!, password: String!): User
+  deleteUser(id: ID!): User!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  role: String!
+}
+
+type Token {
+  token: String!
+}

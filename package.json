@@ -1,0 +1,27 @@
+{
+  "name": "graphql-chat",
+  "version": "0.0.1",
+  "description": "Basic node chat app server.",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "nodemon ./src/server.js",
+    "major": "npm version major && git push",
+    "minor": "npm version minor && git push",
+    "patch": "npm version patch && git push"
+  },
+  "keywords": [
+    "GraphQL"
+  ],
+  "author": "Gabriel Pereira",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "graphql-shield": "^6.0.4",
+    "graphql-yoga": "^1.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
+    "merge-graphql-schemas": "^1.6.2-3705b28.0",
+    "mongoose": "^5.6.7",
+    "nodemon": "^1.19.1"
+  }
+}
