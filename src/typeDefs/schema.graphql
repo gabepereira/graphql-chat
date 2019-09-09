@@ -8,7 +8,6 @@ type Mutation {
   auth(email: String!, password: String!): Token!
   createUser(name: String!, email: String!, password: String!): User
   deleteUser(id: ID!): User!
-
   createRoom(title: String!): Room!
   sendMessage(message: String!, room: ID!): Message
   joinRoom(room: ID!): Room!

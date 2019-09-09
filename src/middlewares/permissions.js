@@ -9,10 +9,13 @@ module.exports = permissions = shield({
         users: and(
             policies.auth, policies.admin
         ),
+        messages: and(
+            policies.auth
+        )
+
     },
 
     Mutation: {
-        createUser: and(),
         deleteUser: and(
             policies.auth, policies.admin
         ),

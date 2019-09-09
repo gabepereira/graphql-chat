@@ -6,7 +6,6 @@
 <div align="center">Basic node chat app server.</div>
   
 ## Getting started
----
 
 ```sh
 # 1. Navigate to the folder
@@ -15,7 +14,6 @@
 ```
 
 ## Documentation
----
 
 ### Commands
 
