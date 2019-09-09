@@ -11,6 +11,7 @@ type Mutation {
 
   createRoom(title: String!): Room!
   sendMessage(message: String!, room: ID!): Message
+  joinRoom(room: ID!): Room!
 }
 
 type Subscription {
