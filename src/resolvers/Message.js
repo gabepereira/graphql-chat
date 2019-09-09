@@ -12,16 +12,21 @@ const Query = {
 
 const Mutation = {
     sendMessage: async(_, { message, room }, ctx, info) => {
-        const data = {
+        const response = await Room.findById(room);
+        response.messages.push({
             message: message,
             sender: ctx.token.id
-        }
-        const response = await Room.findById(room);
-        response.messages.push(data);
+        });
         response.updateOne(response, (err, doc) => 
         err ? new Error('Error updating room: ') : doc);
-        ctx.pubsub.publish('CHAT_CHANNEL', { getMessage: message });
-        return { message };
+        const result = {
+            message: message,
+            sender: await User.findById(ctx.token.id)
+        }
+        ctx.pubsub.publish('CHAT_CHANNEL', {
+            getMessage: result
+        });
+        return result;
     }
 };
 

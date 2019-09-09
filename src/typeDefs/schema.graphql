@@ -14,7 +14,7 @@ type Mutation {
 }
 
 type Subscription {
-  getMessage: String
+  getMessage: Message!
 }
 
 type User {
@@ -39,4 +39,5 @@ type Room {
 
 type Message {
   message: String!
+  sender: User!
 }
