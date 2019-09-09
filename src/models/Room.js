@@ -7,8 +7,12 @@ const RoomSchema = new mongoose.Schema({
         ref: 'User',
     }],
     messages: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Message',
+        _id: false,
+        message: 'String',
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
     }]
 });
 

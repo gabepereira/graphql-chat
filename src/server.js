@@ -1,4 +1,4 @@
-const { GraphQLServer } = require('graphql-yoga');
+const { GraphQLServer, PubSub } = require('graphql-yoga');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const middlewares = require('./middlewares');
@@ -14,14 +14,17 @@ const options = {
   port: process.env.PORT || '4000'
 };
 
+const pubsub = new PubSub();
+
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
   middlewares: [middlewares.Permissions],
   context: req => ({
     ...req,
-    token: middlewares.token(req)
-  })
+    token: middlewares.token(req),
+    pubsub,
+  }),
 });
 
 server.start(options, () => console.log(

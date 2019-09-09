@@ -1,6 +1,7 @@
 type Query {
   user(id: ID!): User!
   users: [User!]!
+  messages(room: ID!): [Message!]!
 }
 
 type Mutation {
@@ -9,7 +10,11 @@ type Mutation {
   deleteUser(id: ID!): User!
 
   createRoom(title: String!): Room!
-  sendMessage(message: String!, room: ID!): Message!
+  sendMessage(message: String!, room: ID!): Message
+}
+
+type Subscription {
+  getMessage: String
 }
 
 type User {
@@ -34,6 +39,4 @@ type Room {
 
 type Message {
   message: String!
-  sender: User!
-  room: Room!
 }

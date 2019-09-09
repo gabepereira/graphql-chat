@@ -14,7 +14,12 @@ const Mutation = Object.assign(
   message.Mutation
 );
 
+const Subscription = Object.assign(
+  message.Subscription
+)
+
 module.exports = {
   Query,
-  Mutation
+  Mutation,
+  Subscription
 }
