@@ -1,11 +1,17 @@
 const user = require('./User');
+const room = require('./Room');
+const message = require('./Message');
 
 const Query = Object.assign(
-	user.Query,
+  user.Query,
+  room.Query,
+  message.Query
 );
 
 const Mutation = Object.assign(
-	user.Mutation,
+  user.Mutation,
+  room.Mutation,
+  message.Mutation
 );
 
 module.exports = {

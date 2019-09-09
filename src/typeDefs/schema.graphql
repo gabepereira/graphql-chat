@@ -7,6 +7,9 @@ type Mutation {
   auth(email: String!, password: String!): Token!
   createUser(name: String!, email: String!, password: String!): User
   deleteUser(id: ID!): User!
+
+  createRoom(title: String!): Room!
+  sendMessage(message: String!, room: ID!): Message!
 }
 
 type User {
@@ -15,8 +18,22 @@ type User {
   email: String!
   password: String!
   role: String!
+  rooms: [Room!]!
 }
 
 type Token {
   token: String!
+}
+
+type Room {
+  id: ID!
+  title: String!
+  users: [User!]!
+  messages: [Message!]
+}
+
+type Message {
+  message: String!
+  sender: User!
+  room: Room!
 }

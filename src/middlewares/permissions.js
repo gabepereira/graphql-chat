@@ -12,11 +12,15 @@ module.exports = permissions = shield({
     },
 
     Mutation: {
-        createUser: and(
-            policies.auth, policies.admin
-        ),
+        createUser: and(),
         deleteUser: and(
             policies.auth, policies.admin
+        ),
+        createRoom: and(
+            policies.auth
+        ),
+        sendMessage: and(
+            policies.auth
         ),
     }
 });

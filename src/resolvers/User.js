@@ -1,7 +1,6 @@
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const Product = require('../models/Product');
 
 const Query = {
     user: (_, { id }) => User.findById(id),
@@ -11,10 +10,9 @@ const Query = {
 const Mutation = {
     createUser: (_, { name, email, password }) => {
 		const user = User.create({
-			name, email,
+			name, email, rooms: [],
 			password: md5(password + process.env.SALT_KEY),
 			role: 'user',
-			cart: []
 		});
 		return user ? user : new Error('Cannot create user.');
 	},
