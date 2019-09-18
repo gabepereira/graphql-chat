@@ -1,45 +1,26 @@
-const Room = require('../models/Room');
+const Message = require('../models/Message');
 const User = require('../models/User');
-
-const CHAT_CHANNEL = 'CHAT_CHANNEL';
+const Room = require('../models/Room');
 
 const Query = {
     messages: async(_, { room }, ctx) => {
-        const _room = await Room.findById(room);
-        return _room.messages;
+        const messages = await Message.find({ room: room });
+        return messages;
     }
 };
 
 const Mutation = {
     sendMessage: async(_, { message, room }, ctx, info) => {
-        const response = await Room.findById(room);
-        response.messages.push({
-            message: message,
-            sender: ctx.token.id
+        const user = await User.findById(ctx.token.id);
+        if(!user || !room) throw new Error('No user found.');
+        const response = await Message.create({
+            message, room, sender: user
         });
-        response.updateOne(response, (err, doc) => 
-        err ? new Error('Error updating room: ') : doc);
-        const result = {
-            message: message,
-            sender: await User.findById(ctx.token.id)
-        }
-        ctx.pubsub.publish('CHAT_CHANNEL', {
-            getMessage: result
-        });
-        return result;
-    }
-};
-
-const Subscription = {
-    getMessage: {
-        subscribe: (_, args, ctx, info) => {
-            return ctx.pubsub.asyncIterator(CHAT_CHANNEL);
-        }
+        return response;
     }
 };
 
 module.exports = {
 	Query,
-    Mutation,
-    Subscription
+    Mutation
 }

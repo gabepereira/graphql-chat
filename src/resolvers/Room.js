@@ -2,7 +2,7 @@ const Room = require('../models/Room');
 const User = require('../models/User');
 
 const Query = {
-    
+    rooms: () => Room.find(),
 };
 
 const Mutation = {
@@ -12,7 +12,6 @@ const Mutation = {
         const room = await Room.create({
             title: title,
             users: [user],
-            messages: []
         });
         user.rooms.push(room.id);
         user.updateOne(user, (err, doc) => 

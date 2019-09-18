@@ -1,6 +1,7 @@
 type Query {
   user(id: ID!): User!
   users: [User!]!
+  rooms: [Room!]!
   messages(room: ID!): [Message!]!
 }
 
@@ -23,7 +24,7 @@ type User {
   email: String!
   password: String!
   role: String!
-  rooms: [Room!]!
+  rooms: [ID!]!
 }
 
 type Token {
@@ -34,7 +35,6 @@ type Room {
   id: ID!
   title: String!
   users: [User!]!
-  messages: [Message!]
 }
 
 type Message {
